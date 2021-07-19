@@ -1,12 +1,18 @@
 import "./App.scss";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { lazy, Suspense } from "react";
+
+const Login = lazy(() => import("./pages/login"));
 
 function App() {
   return (
-    <div className="App h-screen bg-blue-50 flex justify-center items-center">
-      <div className="h-7 w-24 bg-blue-200 flex justify-center items-center rounded-md hover:bg-blue-600 cursor-pointer">
-        <h1>EXPLORE</h1>
-      </div>
-    </div>
+    <Router>
+      <Suspense fallback={<p>loading..</p>}>
+        <Switch>
+          <Route path="/login" component={Login} />
+        </Switch>
+      </Suspense>
+    </Router>
   );
 }
 
