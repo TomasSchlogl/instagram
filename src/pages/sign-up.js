@@ -16,11 +16,13 @@ export default function SignUp() {
   const [error, setError] = useState("");
   const isInvalid = password === "" || emailAddress === "";
 
+  console.log(password, emailAddress);
+
   const handleSignUp = async (event) => {
     event.preventDefault();
 
     const usernameExists = await doesUsernameExist(username);
-    if (!usernameExists) {
+    if (!usernameExists.length) {
       try {
         const createdUserResult = await firebase
           .auth()
